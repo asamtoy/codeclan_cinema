@@ -4,11 +4,9 @@ class Customer
   def initialize( customer )
     @id = customer['id'].to_i
     @name = customer['name']
-    @funds = customer['funds']
+    @funds = customer['funds'].to_i
   end
 
-# read, update, delete
-# From Pizza customers
   def Customer.all
     sql = 'SELECT * FROM customers;'
     results = SqlRunner.run(sql)
@@ -37,7 +35,6 @@ class Customer
   end
 
   def update()
-    db = PG.connect( { dbname: 'cinema', host: 'localhost' } )
     sql = '
       UPDATE customers SET (
         name,
@@ -45,8 +42,8 @@ class Customer
       ) = (
         $1, $2
       )
-      WHERE id = $5;'
-    values = [@name, @funds]
+      WHERE id = $3;'
+    values = [@name, @funds, @id]
     SqlRunner.run(sql, values)
   end
 
