@@ -2,6 +2,7 @@ require("pry")
 
 require_relative("../models/customers.rb")
 require_relative("../models/films.rb")
+require_relative("../models/tickets.rb")
 
 customer1 = Customer.new( {"name" => "Andrew", "funds" => "19"})
 customer2 = Customer.new( {"name" => "Alice", "funds" => "400"})
@@ -18,6 +19,18 @@ film1.save
 film2.save
 film3.save
 film4.save
+
+film4.delete
+
+ticket1 = Ticket.new( { "customer_id" => "1", "film_id" => "8"})
+ticket2 = Ticket.new( { "customer_id" => "2", "film_id" => "8"})
+
+ticket1.save
+ticket2.save
+
+ticket2.delete
+
+ticket3 = Ticket.new( { "customer_id" => "2", "film_id" => "4"})
 
 binding.pry
 nil

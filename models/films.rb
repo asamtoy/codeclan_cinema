@@ -3,7 +3,7 @@ require_relative("../db/sql_runner")
 class Film
   def initialize( film )
     @id = film['id'].to_i
-    @name = film['title']
+    @title = film['title']
     @price = film['price']
   end
 
@@ -28,7 +28,7 @@ class Film
         $1, $2
       )
       RETURNING *;'
-    returned_data = SqlRunner.run(sql, [@name, @price])
+    returned_data = SqlRunner.run(sql, [@title, @price])
     returned_hash = returned_data[0]
     id = returned_hash['id']
     @id = id.to_i()
@@ -44,7 +44,7 @@ class Film
         $1, $2
       )
       WHERE id = $5;'
-    values = [@name, @price]
+    values = [@title, @price]
     SqlRunner.run(sql, values)
   end
 
