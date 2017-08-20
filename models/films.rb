@@ -7,18 +7,6 @@ class Film
     @price = film['price']
   end
 
-  def Film.all
-    sql = 'SELECT * FROM films;'
-    results = SqlRunner.run(sql)
-    films = []
-    for result_hash in results do
-      film_object = Film.new(result_hash)
-      films.push(film_object)
-    end
-
-    return films
-  end
-
   def save
     sql = '
       INSERT INTO films (
@@ -32,6 +20,18 @@ class Film
     returned_hash = returned_data[0]
     id = returned_hash['id']
     @id = id.to_i()
+  end
+
+  def Film.all
+    sql = 'SELECT * FROM films;'
+    results = SqlRunner.run(sql)
+    films = []
+    for result_hash in results do
+      film_object = Film.new(result_hash)
+      films.push(film_object)
+    end
+
+    return films
   end
 
   def update()
