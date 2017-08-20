@@ -14,7 +14,8 @@ CREATE TABLE customers (
   funds INT
 );
 
-s  id SERIAL PRIMARY KEY,
+CREATE TABLE tickets (
+  id SERIAL PRIMARY KEY,
   film_id INT REFERENCES films(id),
   customer_id INT REFERENCES customers(id)
 );
