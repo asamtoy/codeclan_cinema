@@ -15,7 +15,6 @@ class Customer
       customer_object = Customer.new(result_hash)
       customers.push(customer_object)
     end
-
     return customers
   end
 
